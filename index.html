@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#245c48">
+  <meta name="description" content="A private journal for native Mandarin listening practice.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+
+<title>Mandarin Listening Journal</title>
+<style>
+:root{--bg:#f5f4ee;--panel:#fffefa;--ink:#1f2b26;--muted:#69756e;--line:#e0e4db;--green:#245c48;--green2:#dcebe2;--gold:#f0c96a;--red:#a13f39;--shadow:0 8px 24px #1828200b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{max-width:1080px;margin:auto;padding:22px 16px 48px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}.brand{display:flex;gap:12px;align-items:center}.logo{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--green);color:white;font-size:22px}.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:750}.brand h1{font-size:22px;line-height:1.2;margin:3px 0 0}.privacy{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:7px 10px;border-radius:999px;background:#ffffff80}
+.hero{background:var(--green);color:#fff;border-radius:22px;padding:24px;margin-bottom:18px;position:relative;overflow:hidden}.hero:after{content:"听";position:absolute;right:22px;top:-30px;font-size:145px;line-height:1;color:#ffffff0c;font-weight:800}.hero h2{font-size:25px;margin:0 0 7px;max-width:620px}.hero p{margin:0;color:#e0ece4;max-width:650px}.hero .tip{margin-top:16px;display:inline-block;background:#ffffff18;border:1px solid #ffffff30;border-radius:10px;padding:8px 11px;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}.stat{padding:15px}.stat span{display:block;font-size:12px;color:var(--muted)}.stat strong{display:block;font-size:25px;margin-top:4px;letter-spacing:-.03em}.stat small{font-size:11px;color:var(--muted)}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}.tab{border:1px solid var(--line);background:transparent;color:var(--muted);padding:9px 14px;border-radius:999px;font-weight:650}.tab.active{background:var(--green);color:white;border-color:var(--green)}
+.view{display:none}.view.active{display:block}.panel{padding:20px;margin-bottom:16px}.panel h3{margin:0 0 4px;font-size:18px}.sub{margin:0 0 17px;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{min-width:0}.field.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:750;color:#47564e;margin-bottom:6px}input,select,textarea{width:100%;background:#fff;border:1px solid #d7ded5;border-radius:10px;padding:11px 12px;color:var(--ink);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px #245c4818}textarea{resize:vertical;min-height:90px}textarea.tall{min-height:150px}.hint{font-size:11px;color:var(--muted);margin-top:5px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 14px;font-weight:700}.btn.primary{background:var(--green);color:white;border-color:var(--green)}.btn.soft{background:var(--green2);border-color:var(--green2);color:var(--green)}.btn.danger{color:var(--red)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.scale{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.scale label{font-size:12px;display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);padding:10px;border-radius:10px;background:white;font-weight:600;cursor:pointer}.scale input{width:auto;margin-top:3px;accent-color:var(--green)}.stage{display:block;color:var(--green);font-weight:800;font-size:11px}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px}.toolbar input{flex:1;min-width:160px}.toolbar select{width:auto;min-width:130px}.entry-list{display:grid;gap:10px}.entry{border:1px solid var(--line);border-radius:13px;padding:15px;background:#fff;display:flex;gap:14px;justify-content:space-between;align-items:flex-start}.entry h4{margin:0 0 4px;font-size:15px}.entry p{margin:3px 0;color:var(--muted);font-size:13px}.entry-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.pill{font-size:11px;border-radius:999px;padding:4px 8px;background:#edf2ed;color:#40574b}.entry-actions{display:flex;gap:6px;flex-shrink:0}.mini{border:1px solid var(--line);background:white;border-radius:8px;padding:6px 9px;font-size:12px;font-weight:700}.empty{padding:32px 12px;text-align:center;color:var(--muted);border:1px dashed #cbd5cb;border-radius:13px}.empty strong{display:block;color:var(--ink);margin-bottom:4px}
+.wordrow{display:grid;grid-template-columns:1fr 180px 2fr auto;gap:8px;align-items:center;margin-bottom:9px}.wordrow input,.wordrow select{padding:9px}.stage-list{font-size:12px;color:var(--muted);line-height:1.8}
+.note-card{padding:14px;border:1px solid var(--line);border-radius:12px;margin-top:10px;background:#fff}.note-card h4{margin:0 0 4px}.note-card p{white-space:pre-wrap;margin:0;color:var(--muted);font-size:13px}
+footer{text-align:center;color:var(--muted);font-size:11px;margin-top:25px}
+@media(max-width:680px){.shell{padding:15px 12px 36px}.hero{padding:20px}.hero h2{font-size:22px}.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{padding:12px}.stat strong{font-size:22px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.scale{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:15px}.entry{display:block}.entry-actions{margin-top:12px}.wordrow{grid-template-columns:1fr 1fr}.wordrow .word-note{grid-column:1/-1}.wordrow .remove-word{grid-column:1/-1;justify-self:start}header{align-items:flex-start}.privacy{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+  <div class="brand"><div class="logo">听</div><div><div class="eyebrow">Personal immersion tracker</div><h1>Mandarin Listening Journal</h1></div></div>
+  <div class="privacy">🔒 Saved on this device</div>
+</header>
+<section class="hero">
+  <h2>Listen first. Notice what returns.</h2>
+  <p>A quiet journal for real Mandarin: native conversations, repeated listening, useful observations, and gradual recognition. No streak pressure. No forced flashcards.</p>
+  <div class="tip">Your rule: look up a word only when it keeps returning and genuinely blocks understanding.</div>
+</section>
+<section class="stats">
+  <div class="stat"><span>Total listening</span><strong id="totalMinutes">0 min</strong><small>Across saved sessions</small></div>
+  <div class="stat"><span>Sessions logged</span><strong id="totalSessions">0</strong><small>Every saved entry</small></div>
+  <div class="stat"><span>Average comprehension</span><strong id="avgComp">—</strong><small>Self-rated, out of 10</small></div>
+  <div class="stat"><span>Words tracked</span><strong id="wordCount">0</strong><small>Recognition, not memorization</small></div>
+</section>
+<nav class="tabs" aria-label="Journal sections">
+  <button class="tab active" data-view="log">＋ Daily log</button>
+  <button class="tab" data-view="all">▤ All logs</button>
+  <button class="tab" data-view="words">字 Word tracker</button>
+  <button class="tab" data-view="notes">✎ Notes</button>
+  <button class="tab" data-view="backup">⇩ Export & backup</button>
+</nav>
+<main>
+<section class="view active" id="view-log">
+  <div class="panel">
+    <h3 id="formTitle">Log a listening session</h3><p class="sub">One entry per session or day—whichever feels natural. Required fields are kept to a minimum.</p>
+    <form id="logForm">
+      <input type="hidden" id="editId">
+      <div class="grid">
+        <div class="field"><label for="date">Date</label><input type="date" id="date" required></div>
+        <div class="field"><label for="minutes">Listening time (minutes)</label><input type="number" id="minutes" min="0" max="1440" value="30" required></div>
+        <div class="field"><label for="source">Podcast / channel / video</label><input id="source" placeholder="e.g. 故事FM, a vlog, street interview"></div>
+        <div class="field"><label for="topic">Topic</label><input id="topic" placeholder="e.g. family, food, work, daily life"></div>
+        <div class="field"><label for="attention">How did you listen?</label><select id="attention"><option>Focused</option><option>Mixed attention</option><option>Mostly background</option></select></div>
+        <div class="field"><label for="difficulty">Overall difficulty</label><select id="difficulty"><option>Moderate</option><option>Easy</option><option>Difficult</option><option>Overwhelming</option></select></div>
+        <div class="field"><label for="comprehension">Comprehension (0–10)</label><div style="display:flex;gap:10px;align-items:center"><input type="range" id="comprehension" min="0" max="10" value="4" style="padding:0;accent-color:var(--green)"><strong id="compValue" style="min-width:34px">4/10</strong></div><div class="hint">Your estimate of how much meaning you followed—not a test score.</div></div>
+        <div class="field"><label for="mood">How did it feel?</label><select id="mood"><option>Enjoyable</option><option>Neutral</option><option>Frustrating</option><option>Interesting but tiring</option></select></div>
+        <div class="field full"><label>How familiar did the speech feel?</label>
+          <div class="scale">
+            <label><input type="radio" name="familiarity" value="Mostly unfamiliar" checked><span>Mostly unfamiliar</span></label>
+            <label><input type="radio" name="familiarity" value="Some familiar words"><span>Some familiar words; sentences hard</span></label>
+            <label><input type="radio" name="familiarity" value="Many recognizable expressions"><span>Many recognizable expressions</span></label>
+            <label><input type="radio" name="familiarity" value="Most speech recognizable"><span>Most speech recognizable</span></label>
+          </div>
+        </div>
+        <div class="field full"><label for="observations">Listening observations</label><textarea id="observations" placeholder="What did you notice? Repeated sounds, a phrase you recognized, context clues, speech speed, or what became clearer…"></textarea></div>
+        <div class="field full"><label for="recurring">Recurring words / expressions (optional)</label><textarea id="recurring" placeholder="Only add items that keep appearing or repeatedly block meaning. You can track their recognition stage in Word tracker." style="min-height:75px"></textarea></div>
+        <div class="field full"><label for="sessionNotes">Notes for this session</label><textarea id="sessionNotes" placeholder="Anything else you want to remember about this listening session…"></textarea></div>
+      </div>
+      <div class="actions"><button class="btn primary" type="submit" id="saveBtn">Save session</button><button class="btn" type="button" id="resetBtn">Clear form</button><button class="btn" type="button" id="cancelEditBtn" style="display:none">Cancel edit</button></div>
+    </form>
+  </div>
+</section>
+<section class="view" id="view-all">
+  <div class="panel"><h3>All listening logs</h3><p class="sub">Search notes, sources, topics, and observations. Select an entry to edit it or remove it.</p>
+    <div class="toolbar"><input id="searchLogs" placeholder="Search your journal…"><input type="date" id="fromDate" aria-label="From date" title="From date"><input type="date" id="toDate" aria-label="To date" title="To date"><select id="sortLogs"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="long">Longest first</option></select></div>
+    <div id="logList" class="entry-list"></div>
+  </div>
+</section>
+<section class="view" id="view-words">
+  <div class="panel"><h3>Word recognition tracker</h3><p class="sub">Track what your ear recognizes. Pinyin or your own phonetic notes are fine; Chinese characters are optional.</p>
+    <div class="stage-list">0 Unrecognized · 1 Sound-familiar · 2 Recognized, meaning unclear · 3 Meaning guessed · 4 Known in context · 5 Automatic across contexts</div>
+    <div id="wordRows" style="margin-top:17px"></div>
+    <div class="actions"><button class="btn soft" id="addWord">＋ Add word / expression</button><button class="btn primary" id="saveWords">Save word tracker</button></div>
+  </div>
+</section>
+<section class="view" id="view-notes">
+  <div class="panel"><h3>Journal notes</h3><p class="sub">A separate notebook for patterns across days, ideas, questions, and discoveries.</p>
+    <form id="noteForm"><div class="grid"><div class="field"><label for="noteDate">Date</label><input type="date" id="noteDate" required></div><div class="field"><label for="noteTitle">Title</label><input id="noteTitle" placeholder="e.g. I’m starting to hear sentence endings" required></div><div class="field full"><label for="noteBody">Your note</label><textarea class="tall" id="noteBody" placeholder="Write freely. This is your own listening notebook…" required></textarea></div></div><div class="actions"><button class="btn primary" type="submit">Save note</button><button class="btn" type="button" id="clearNote">Clear</button></div></form>
+    <div style="margin-top:24px"><h3>Saved notes</h3><div id="notesList"></div></div>
+  </div>
+</section>
+<section class="view" id="view-backup">
+  <div class="panel"><h3>Export & backup</h3><p class="sub">Keep your own copy. JSON is the best full backup because it preserves logs, notes, and word stages; CSV is convenient for spreadsheets.</p>
+    <div class="grid">
+      <div class="field"><strong>Export listening logs</strong><p class="sub">Download all saved sessions as a CSV spreadsheet.</p><button class="btn primary" id="exportCsv">Download logs CSV</button></div>
+      <div class="field"><strong>Full backup</strong><p class="sub">Download logs, notebook notes, and tracked words in one JSON file.</p><button class="btn primary" id="exportJson">Download full backup JSON</button></div>
+      <div class="field"><strong>Restore a backup</strong><p class="sub">Import a JSON backup previously exported from this journal. Imported entries are added to your current data.</p><input type="file" id="importFile" accept=".json,application/json"></div>
+      <div class="field"><strong>Single entry</strong><p class="sub">For a single session, open All logs and choose “Export”.</p><button class="btn" id="goLogs">Open all logs</button></div>
+    </div>
+    <div class="note-card" style="margin-top:20px"><h4>Important about saving</h4><p>Your journal is stored in this browser on this device. It does not automatically sync to another phone or computer. Export a JSON backup regularly, and avoid clearing browser site data unless you have a backup. If you publish this website online, use the same browser/device for the same local journal.</p></div>
+    <div class="actions"><button class="btn danger" id="clearAll">Delete all journal data…</button></div>
+  </div>
+</section>
+</main>
+<footer>Made for steady listening, not perfect scores. Your journal belongs to you.</footer>
+</div>
+<script>
+(() => {
+  const KEY = 'mandarinListeningJournal.v1';
+  const $ = id => document.getElementById(id);
+  const today = () => new Date().toLocaleDateString('en-CA');
+  let data = {logs:[], notes:[], words:[]};
+  try { const raw = localStorage.getItem(KEY); if(raw){ const parsed=JSON.parse(raw); data={logs:parsed.logs||[],notes:parsed.notes||[],words:parsed.words||[]}; } } catch(e) {}
+  const uid = () => (Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+  const safe = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(data)); renderAll(); return true; } catch(e) { alert('Could not save. Your browser storage may be full. Export a backup and try again.'); return false; } };
+  const download = (name, content, type) => { const blob=new Blob([content],{type}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(url),1000); };
+  const csvCell = v => '"' + String(v ?? '').replace(/"/g,'""') + '"';
+  const exportOne = id => { const x=data.logs.find(l=>l.id===id); if(x) download(`mandarin-session-${x.date}.json`,JSON.stringify({logs:[x],notes:[],words:[]},null,2),'application/json'); };
+  $('date').value=today(); $('noteDate').value=today();
+  $('comprehension').addEventListener('input',()=> $('compValue').textContent=$('comprehension').value+'/10');
+  document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
+  function switchView(name){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.view===name));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name)); if(name==='all') renderLogs(); if(name==='words') renderWords(); if(name==='notes') renderNotes(); window.scrollTo({top:0,behavior:'smooth'});}
+  function resetForm(){ $('logForm').reset(); $('date').value=today(); $('minutes').value=30; $('comprehension').value=4; $('compValue').textContent='4/10'; $('editId').value=''; $('formTitle').textContent='Log a listening session'; $('saveBtn').textContent='Save session'; $('cancelEditBtn').style.display='none'; }
+  $('resetBtn').addEventListener('click',resetForm); $('cancelEditBtn').addEventListener('click',resetForm);
+  $('logForm').addEventListener('submit',e=>{e.preventDefault();const id=$('editId').value;const item={id:id||uid(),date:$('date').value,minutes:Number($('minutes').value)||0,source:$('source').value.trim(),topic:$('topic').value.trim(),attention:$('attention').value,difficulty:$('difficulty').value,comprehension:Number($('comprehension').value),mood:$('mood').value,familiarity:document.querySelector('input[name="familiarity"]:checked')?.value||'',observations:$('observations').value.trim(),recurring:$('recurring').value.trim(),sessionNotes:$('sessionNotes').value.trim(),updatedAt:new Date().toISOString()};if(id){const i=data.logs.findIndex(x=>x.id===id);if(i>=0)data.logs[i]=item;}else data.logs.push(item);if(persist()){resetForm();switchView('all');}});
+  function renderStats(){const mins=data.logs.reduce((s,l)=>s+(Number(l.minutes)||0),0);$('totalMinutes').textContent=mins>=60?`${Math.floor(mins/60)}h ${mins%60}m`:`${mins} min`;$('totalSessions').textContent=data.logs.length;const rated=data.logs.filter(l=>Number.isFinite(Number(l.comprehension)));$('avgComp').textContent=rated.length?(rated.reduce((s,l)=>s+Number(l.comprehension),0)/rated.length).toFixed(1)+'/10':'—';$('wordCount').textContent=data.words.length;}
+  function renderLogs(){const q=$('searchLogs').value.toLowerCase().trim(),from=$('fromDate').value,to=$('toDate').value,sort=$('sortLogs').value;let list=data.logs.filter(l=>(!from||l.date>=from)&&(!to||l.date<=to)&&(!q||[l.source,l.topic,l.observations,l.recurring,l.sessionNotes,l.familiarity].join(' ').toLowerCase().includes(q)));list.sort((a,b)=>sort==='old'?a.date.localeCompare(b.date):sort==='long'?(b.minutes-a.minutes):b.date.localeCompare(a.date));const el=$('logList');if(!list.length){el.innerHTML='<div class="empty"><strong>No sessions found</strong>Save a session or change your search/filter.</div>';return;}el.innerHTML=list.map(l=>`<article class="entry"><div><h4>${safe(l.date)} · ${safe(l.source||'Listening session')}</h4><p>${safe(l.topic||'No topic added')}${l.observations?' — '+safe(l.observations.slice(0,170))+(l.observations.length>170?'…':''):''}</p><div class="entry-meta"><span class="pill">${Number(l.minutes)||0} min</span><span class="pill">Comprehension ${safe(l.comprehension)}/10</span><span class="pill">${safe(l.difficulty)}</span><span class="pill">${safe(l.attention)}</span></div>${l.sessionNotes?`<p><b>Session note:</b> ${safe(l.sessionNotes)}</p>`:''}${l.recurring?`<p><b>Recurring:</b> ${safe(l.recurring)}</p>`:''}</div><div class="entry-actions"><button class="mini" data-edit="${l.id}">Edit</button><button class="mini" data-export="${l.id}">Export</button><button class="mini" data-delete="${l.id}">Delete</button></div></article>`).join('');el.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editLog(b.dataset.edit));el.querySelectorAll('[data-export]').forEach(b=>b.onclick=()=>exportOne(b.dataset.export));el.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>deleteLog(b.dataset.delete));}
+  function editLog(id){const l=data.logs.find(x=>x.id===id);if(!l)return;switchView('log');$('editId').value=l.id;['date','minutes','source','topic','attention','difficulty','comprehension','mood','observations','recurring','sessionNotes'].forEach(k=>$(k).value=l[k]??'');const radio=document.querySelector(`input[name="familiarity"][value="${CSS.escape(l.familiarity||'Mostly unfamiliar')}"]`);if(radio)radio.checked=true;$('compValue').textContent=$('comprehension').value+'/10';$('formTitle').textContent='Edit listening session';$('saveBtn').textContent='Save changes';$('cancelEditBtn').style.display='inline-block';}
+  function deleteLog(id){if(confirm('Delete this listening session? This cannot be undone unless you have a backup.')){data.logs=data.logs.filter(l=>l.id!==id);persist();}}
+  ['searchLogs','fromDate','toDate','sortLogs'].forEach(id=>$(id).addEventListener(id==='searchLogs'?'input':'change',renderLogs));
+  function renderWords(){const el=$('wordRows');if(!data.words.length){el.innerHTML='<div class="empty"><strong>No words tracked yet</strong>Add only recurring words or expressions that are worth noticing.</div>';return;}el.innerHTML=data.words.map((w,i)=>`<div class="wordrow" data-index="${i}"><input class="word-text" aria-label="Word or expression" placeholder="Sound / pinyin / characters" value="${safe(w.word)}"><select class="word-stage" aria-label="Recognition stage">${['0 · Unrecognized','1 · Sound-familiar','2 · Recognized, meaning unclear','3 · Meaning guessed','4 · Known in context','5 · Automatic'].map((s,j)=>`<option value="${j}" ${Number(w.stage)===j?'selected':''}>${s}</option>`).join('')}</select><input class="word-note" aria-label="Meaning or context" placeholder="Meaning / where heard / context" value="${safe(w.note)}"><button class="mini remove-word" type="button">Remove</button></div>`).join('');el.querySelectorAll('.remove-word').forEach(b=>b.onclick=()=>{b.closest('.wordrow').remove();});}
+  $('addWord').onclick=()=>{if(!$('wordRows').querySelector('.wordrow')&&$('wordRows').querySelector('.empty'))$('wordRows').innerHTML='';const row=document.createElement('div');row.className='wordrow';row.innerHTML='<input class="word-text" aria-label="Word or expression" placeholder="Sound / pinyin / characters"><select class="word-stage" aria-label="Recognition stage">'+['0 · Unrecognized','1 · Sound-familiar','2 · Recognized, meaning unclear','3 · Meaning guessed','4 · Known in context','5 · Automatic'].map((s,j)=>`<option value="${j}">${s}</option>`).join('')+'</select><input class="word-note" aria-label="Meaning or context" placeholder="Meaning / where heard / context"><button class="mini remove-word" type="button">Remove</button>';row.querySelector('button').onclick=()=>row.remove();$('wordRows').appendChild(row);row.querySelector('input').focus();};
+  $('saveWords').onclick=()=>{data.words=[...$('wordRows').querySelectorAll('.wordrow')].map(r=>({word:r.querySelector('.word-text').value.trim(),stage:Number(r.querySelector('.word-stage').value),note:r.querySelector('.word-note').value.trim()})).filter(w=>w.word);persist();alert('Word tracker saved.');};
+  $('noteForm').addEventListener('submit',e=>{e.preventDefault();data.notes.unshift({id:uid(),date:$('noteDate').value,title:$('noteTitle').value.trim(),body:$('noteBody').value.trim()});if(persist()){$('noteTitle').value='';$('noteBody').value='';$('noteDate').value=today();}});
+  $('clearNote').onclick=()=>{$('noteTitle').value='';$('noteBody').value='';$('noteDate').value=today();};
+  function renderNotes(){const el=$('notesList');if(!data.notes.length){el.innerHTML='<div class="empty"><strong>No notes yet</strong>Your cross-session observations will appear here.</div>';return;}el.innerHTML=data.notes.map(n=>`<div class="note-card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:start"><div><h4>${safe(n.title)}</h4><div class="hint">${safe(n.date)}</div></div><button class="mini" data-note-delete="${n.id}">Delete</button></div><p style="margin-top:9px">${safe(n.body)}</p></div>`).join('');el.querySelectorAll('[data-note-delete]').forEach(b=>b.onclick=()=>{if(confirm('Delete this note?')){data.notes=data.notes.filter(n=>n.id!==b.dataset.noteDelete);persist();}});}
+  $('exportCsv').onclick=()=>{const cols=['date','minutes','source','topic','attention','difficulty','comprehension','mood','familiarity','observations','recurring','sessionNotes'];const lines=[cols.join(','),...data.logs.map(l=>cols.map(k=>csvCell(l[k])).join(','))];download('mandarin-listening-logs.csv','\ufeff'+lines.join('\r\n'),'text/csv;charset=utf-8');};
+  $('exportJson').onclick=()=>download('mandarin-listening-backup-'+today()+'.json',JSON.stringify({app:'Mandarin Listening Journal',version:1,exportedAt:new Date().toISOString(),...data},null,2),'application/json');
+  $('importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!Array.isArray(obj.logs)||!Array.isArray(obj.notes)||!Array.isArray(obj.words))throw new Error('wrong shape');const existing=new Set([...data.logs,...data.notes].map(x=>x.id));obj.logs.forEach(x=>{if(!existing.has(x.id))data.logs.push({...x,id:x.id||uid()});});obj.notes.forEach(x=>{if(!existing.has(x.id))data.notes.push({...x,id:x.id||uid()});});const seen=new Set(data.words.map(w=>w.word));obj.words.forEach(w=>{if(w.word&&!seen.has(w.word))data.words.push(w);});persist();alert('Backup imported. Your current entries were kept.');}catch(err){alert('That file does not look like a valid journal JSON backup.');}e.target.value='';});
+  $('goLogs').onclick=()=>switchView('all');
+  $('clearAll').onclick=()=>{if(confirm('Delete ALL logs, notes, and tracked words from this browser? Export a backup first if you might need them.')){if(confirm('Final confirmation: permanently delete all journal data from this device?')){data={logs:[],notes:[],words:[]};persist();resetForm();}}};
+  function renderAll(){renderStats();if($('view-all').classList.contains('active'))renderLogs();if($('view-words').classList.contains('active'))renderWords();if($('view-notes').classList.contains('active'))renderNotes();}
+  renderAll();
+})();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch((error) => {
+      console.error('Service worker registration failed:', error);
+    });
+  });
+}
+</script>
+
+</body>
+</html>
